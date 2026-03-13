@@ -10,7 +10,7 @@ Standard labeled scales (Likert, VAS) have two well-documented problems:
 
 1. **Interpersonal relativity** — "extremely angry" means different things to different people. If a group experiences emotions more intensely, their labels scale up with their experience (the [El Greco fallacy](https://en.wikipedia.org/wiki/El_Greco_fallacy)). The gLMS/gVAS solves this with a modality-general top anchor. See [Chituc & Scholl (2025)](https://doi.org/10.1007/s42761-025-00314-z), *Affective Science*.
 
-2. **Nonlinearity** — Labeled scale responses are logarithmically related to actual subjective magnitude. Averaging Likert data directly is like averaging Richter scale values to estimate average earthquake energy — it systematically underestimates the mean (Jensen's inequality). See [Chituc, Crockett, & Scholl (2026)](https://www.sciencedirect.com/science/article/abs/pii/S0010027725002562), *Cognition*.
+2. **Nonlinearity** — Labeled scale responses are logarithmically related to actual subjective magnitude. Averaging Likert data directly is like averaging Richter scale values to estimate average earthquake energy — it systematically underestimates the mean (Jensen's inequality). See [Chituc, Crockett, & Scholl (2026)](https://doi.org/10.1016/j.cognition.2025.106315), *Cognition*.
 
 **Magnitude estimation** provides ratio-scale measurement. The **gLMS** provides a visual analog scale that avoids interpersonal confounds.
 
@@ -155,7 +155,7 @@ For gLMS/gVAS calibration, we recommend 15 practice trials (following Hayes et a
 ## References
 
 - Bartoshuk, L. M., Duffy, V. B., Green, B. G., et al. (2004). Valid across-group comparisons with labeled scales: the gLMS versus magnitude matching. *Physiology & Behavior*, 82, 109-114.
-- Chituc, V., Crockett, M. J., & Scholl, B. J. (2026). [How to show that a cruel prank is worse than a war crime.](https://www.sciencedirect.com/science/article/abs/pii/S0010027725002562) *Cognition*, 266, 106315.
+- Chituc, V., Crockett, M. J., & Scholl, B. J. (2026). [How to show that a cruel prank is worse than a war crime.](https://doi.org/10.1016/j.cognition.2025.106315) *Cognition*, 266, 106315.
 - Chituc, V. & Scholl, B. J. (2025). [The El Greco fallacy, this time with feeling.](https://doi.org/10.1007/s42761-025-00314-z) *Affective Science*, 6, 526-533.
 - Green, B. G., Dalton, P., Cowart, B., et al. (1996). Evaluating the 'Labeled Magnitude Scale' for measuring sensations of taste and smell. *Chemical Senses*, 21, 323-334.
 - Green, B. G., Shaffer, G. S., & Gilmore, M. M. (1993). Derivation and evaluation of a semantic scale of oral sensation magnitude with apparent ratio properties. *Chemical Senses*, 18, 683-702.
