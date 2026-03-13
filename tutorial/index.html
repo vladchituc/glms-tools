@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Psychophysical Measures of Subjective Experience — Vlad Chituc</title>
+  <style>
+    :root {
+      --bg: #f8f4f4;
+      --text: #5c5c5c;
+      --heading: #222222;
+      --accent: #1b9e77;
+      --code-bg: #f0ede9;
+      --border: #ddd;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Source Sans Pro', 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+    h1 {
+      font-family: Georgia, 'Times New Roman', serif;
+      color: var(--heading);
+      font-size: 2rem;
+      margin-bottom: 0.3rem;
+      font-weight: normal;
+    }
+    h2 {
+      font-family: Georgia, 'Times New Roman', serif;
+      color: var(--heading);
+      font-size: 1.4rem;
+      margin-top: 2.5rem;
+      margin-bottom: 0.8rem;
+      font-weight: normal;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.3rem;
+    }
+    h3 {
+      color: var(--heading);
+      font-size: 1.1rem;
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    h4 {
+      color: var(--heading);
+      font-size: 0.95rem;
+      margin-top: 1.2rem;
+      margin-bottom: 0.4rem;
+    }
+    .subtitle {
+      font-size: 1.1rem;
+      color: var(--text);
+      margin-bottom: 2rem;
+    }
+    p { margin-bottom: 1rem; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    code {
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 0.88em;
+      background: var(--code-bg);
+      padding: 0.15em 0.4em;
+      border-radius: 3px;
+    }
+    pre {
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1rem 1.2rem;
+      overflow-x: auto;
+      margin: 1rem 0;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+    pre code {
+      background: none;
+      padding: 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+    }
+    th, td {
+      text-align: left;
+      padding: 0.5rem 0.8rem;
+      border-bottom: 1px solid var(--border);
+    }
+    th {
+      font-weight: 600;
+      color: var(--heading);
+    }
+    blockquote {
+      border-left: 3px solid var(--accent);
+      padding-left: 1rem;
+      margin: 1rem 0;
+      color: #777;
+      font-style: italic;
+    }
+    .label-table td:first-child {
+      font-family: 'SF Mono', monospace;
+      font-size: 0.9rem;
+      text-align: right;
+      width: 60px;
+    }
+    .nav {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+      font-size: 0.9rem;
+      flex-wrap: wrap;
+    }
+    .nav a {
+      color: var(--text);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2px;
+    }
+    .nav a:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+    .ref {
+      font-size: 0.88rem;
+      color: #999;
+      margin-bottom: 0.5rem;
+    }
+    .back { margin-top: 3rem; font-size: 0.9rem; }
+    .demo-link {
+      display: inline-block;
+      padding: 0.4rem 1rem;
+      border: 1px solid var(--accent);
+      border-radius: 4px;
+      font-size: 0.9rem;
+      margin: 0.5rem 0.5rem 0.5rem 0;
+    }
+    .demo-link:hover {
+      background: var(--accent);
+      color: white;
+      text-decoration: none;
+    }
+    .variant-box {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1rem 1.2rem;
+      margin: 1rem 0;
+    }
+    .variant-label {
+      font-size: 0.72rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.3rem;
+      font-weight: 600;
+    }
+    .variant-source {
+      font-size: 0.8rem;
+      color: #aaa;
+      margin-top: 0.5rem;
+    }
+    .result-box {
+      background: #f0f9f5;
+      border-left: 3px solid var(--accent);
+      padding: 1rem 1.2rem;
+      margin: 1rem 0;
+      border-radius: 0 6px 6px 0;
+    }
+    .result-box strong { color: var(--accent); }
+    ul, ol { margin: 0.5rem 0 1rem 1.5rem; }
+    li { margin-bottom: 0.3rem; }
+  </style>
+</head>
+<body>
+
+<h1>Psychophysical Measures of Subjective Experience</h1>
+<p class="subtitle">Tools and templates for measuring subjective intensity in behavioral research.</p>
+
+<div class="nav">
+  <a href="#why">Why?</a>
+  <a href="#glms">gLMS</a>
+  <a href="#gvas">gVAS</a>
+  <a href="#me">Magnitude Estimation</a>
+  <a href="#implementations">Code</a>
+  <a href="#qualtrics">Qualtrics</a>
+  <a href="#analysis">Analysis</a>
+  <a href="#refs">References</a>
+</div>
+
+<h2 id="why">Why these methods?</h2>
+
+<p>Standard labeled scales (Likert, VAS) are the dominant tool in affective science and much of psychology. They work well for many purposes, but they have two documented problems that psychophysics has developed methods to address:</p>
+
+<p><strong>Interpersonal relativity.</strong> Labels mean different things to different people. If a group experiences sensations more intensely, they also interpret "extremely intense" more intensely &mdash; the label anchors scale with the person's experience. This is the <a href="https://en.wikipedia.org/wiki/El_Greco_fallacy">El Greco fallacy</a>, and it can cause real group differences to vanish or illusory differences to appear.</p>
+
+<p class="ref">See: <a href="https://doi.org/10.1007/s42761-025-00314-z">Chituc &amp; Scholl (2025)</a>. The El Greco fallacy, this time with feeling. <em>Affective Science</em>, 6, 526&ndash;533.</p>
+
+<p><strong>Nonlinearity.</strong> Labeled scale responses are logarithmically related to actual subjective magnitude. Averaging Likert responses directly is analogous to averaging Richter scale values to estimate average earthquake energy &mdash; it systematically underestimates the mean due to Jensen's inequality.</p>
+
+<p class="ref">See: <a href="https://www.sciencedirect.com/science/article/abs/pii/S0010027725002562">Chituc, Crockett &amp; Scholl (2026)</a>. How to show that a cruel prank is worse than a war crime. <em>Cognition</em>, 266, 106315.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="glms">The generalized Labeled Magnitude Scale (gLMS)</h2>
+
+<p>A vertical visual analog scale with quasi-logarithmically spaced semantic labels. The participant clicks or drags along a continuous scale (0&ndash;100), guided by the following labels:</p>
+
+<table class="label-table">
+  <thead><tr><th>Position</th><th>Label</th></tr></thead>
+  <tbody>
+    <tr><td>100</td><td>Strongest imaginable sensation of any kind</td></tr>
+    <tr><td>52.5</td><td>Very strong</td></tr>
+    <tr><td>34.7</td><td>Strong</td></tr>
+    <tr><td>17.2</td><td>Moderate</td></tr>
+    <tr><td>6.1</td><td>Weak</td></tr>
+    <tr><td>1.4</td><td>Barely detectable</td></tr>
+    <tr><td>0</td><td>No sensation</td></tr>
+  </tbody>
+</table>
+
+<p>The key innovation: the top anchor is <em>modality-general</em>. It asks about the strongest sensation of any kind &mdash; not the strongest taste, or the strongest emotion. This breaks the El Greco problem: group differences in one modality (e.g., taste for supertasters, emotion for high-trait-anger individuals) don't distort the scale anchors.</p>
+
+<p><a href="demo-glms.html" class="demo-link">Try the interactive gLMS demo &rarr;</a></p>
+
+<h3>Practice trials</h3>
+
+<p>We recommend 15 practice trials before collecting target ratings, following Hayes et al. (2013). Use cross-modal stimuli to calibrate participants' use of the full scale range:</p>
+
+<ul>
+  <li>The warmth of lukewarm water</li>
+  <li>The brightness of a dimly lit room</li>
+  <li>The loudness of a whisper</li>
+  <li>The sweetness of a ripe strawberry</li>
+  <li>The pain of biting your tongue</li>
+  <li>The brightness of the sun on a clear day</li>
+  <li>The warmth of holding a hot cup of coffee</li>
+  <li>The loudness of a fire alarm</li>
+  <li>The sweetness of honey</li>
+  <li>The pain of a paper cut</li>
+  <li>The strength of a firm handshake</li>
+  <li>The warmth of a summer breeze</li>
+  <li>The loudness of normal conversation</li>
+  <li>The brightness of a candle in a dark room</li>
+  <li>The pain of stubbing your toe</li>
+</ul>
+
+<h3>Instructions text</h3>
+
+<blockquote>This scale captures the entire range of how intense experiences can possibly be. The top of the scale (100) represents the strongest sensation you could ever imagine experiencing &mdash; the absolute maximum intensity across all sensory modalities. The bottom (0) is the complete absence of any sensation.</blockquote>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="gvas">The gVAS (horizontal variant)</h2>
+
+<p>The <strong>gVAS</strong> (generalized Visual Analog Scale) uses exactly the same quasi-logarithmically spaced labels as the gLMS, but in a horizontal layout. It's simpler to implement &mdash; especially in Qualtrics, where it's just a standard horizontal slider &mdash; and pilot data suggest it produces equivalent results.</p>
+
+<p><a href="demo-gvas.html" class="demo-link">Try the interactive gVAS demo &rarr;</a></p>
+
+<div class="result-box">
+  <strong>Pilot validation (N = 783).</strong> In the gVAS pilot for <a href="https://doi.org/10.1007/s42761-025-00314-z">Chituc &amp; Scholl (2025)</a>, participants recalled an anger episode and rated its intensity on a horizontal gVAS.
+  The apparent gender difference in anger intensity that appears on standard Likert scales (the El Greco fallacy) was absent on the gVAS: women M&nbsp;=&nbsp;63.5 (SD&nbsp;=&nbsp;22.3), men M&nbsp;=&nbsp;61.4 (SD&nbsp;=&nbsp;23.9), <em>d</em>&nbsp;=&nbsp;0.09, <em>t</em>(779)&nbsp;=&nbsp;1.25, <em>p</em>&nbsp;=&nbsp;.21. This matches the gLMS results from the published studies.
+</div>
+
+<p>If the gLMS practice-trial protocol is too cumbersome for your study, the gVAS is a reasonable alternative. It retains the critical features (modality-general anchor, quasi-logarithmic label spacing) while being easier to administer online.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="me">Magnitude Estimation</h2>
+
+<p>Free-response numerical judgment relative to a named benchmark. Participants assign any non-negative number, and all judgments are interpreted as ratios relative to the benchmark. This provides ratio-scale measurement &mdash; a 20 really means "twice as much" as a 10.</p>
+
+<p><a href="demo-me.html" class="demo-link">Try the interactive ME demo &rarr;</a></p>
+
+<p>There are two key design decisions when using magnitude estimation:</p>
+
+<ol>
+  <li><strong>Modulus type</strong>: Does the experimenter assign a fixed number to the benchmark (e.g., "stealing a wallet = 10"), or does the participant choose their own number?</li>
+  <li><strong>Instruction length</strong>: How much explanation do you give?</li>
+</ol>
+
+<p>Below are the exact wordings used across nine experiments in <a href="https://www.sciencedirect.com/science/article/abs/pii/S0010027725002562">Chituc, Crockett &amp; Scholl (2026)</a> and related studies. All produced valid ratio-scale data.</p>
+
+<!-- ─── FIXED MODULUS ──────────────────────────────────── -->
+<h3>Fixed modulus (experimenter assigns the number)</h3>
+
+<h4>Two-page instructions (benchmark = wallet, modulus = 10)</h4>
+
+<div class="variant-box">
+  <div class="variant-label">Page 1</div>
+  <p style="margin-bottom:0.5rem;">In this study, we will ask you to read a few scenarios and rate them using a special kind of measurement. After you read each scenario, we will ask you to rate how moral a person or action is by assigning it a number. <strong>Please use a 0 to mean "neither moral nor immoral."</strong> (Imagine something like playing with a pen. It's neither morally bad nor morally good, it just <em>is</em>).</p>
+  <p style="margin-bottom:0.5rem;"><strong>As a 10,</strong> we want you to think about the morality of the following event: <strong>stealing a wallet.</strong></p>
+  <p style="margin-bottom:0;">This event is called your <strong>benchmark</strong>.</p>
+  <div class="variant-source">Source: Chituc, Crockett &amp; Scholl (2026), Studies 1a&ndash;1c</div>
+</div>
+
+<div class="variant-box">
+  <div class="variant-label">Page 2</div>
+  <p style="margin-bottom:0.5rem;">In this study, we will ask you to rate other events relative to this benchmark. If the event describes something <strong>just as immoral</strong> as the benchmark, you should <strong>also rate it a 10</strong>. If it describes something <strong>half as immoral</strong> as the benchmark, you should <strong>rate it a 5</strong>. If it is <strong>twenty times as immoral</strong> as the benchmark, <strong>rate it a 200,</strong> and so on. You can use decimals (e.g. "7.5") if you feel like you need to.</p>
+  <p style="margin-bottom:0;">Please try to keep the benchmark and these instructions carefully in mind when you give your responses. If you read about something that seems <strong>extremely immoral</strong> for example, <strong>please don't respond with an arbitrarily high number</strong>. Instead, really think about just <strong>how much more immoral it is relative to the benchmark</strong>, and rate it accordingly. There's no right or wrong answer to these questions, so just do your best and try to be as careful and thoughtful as possible.</p>
+  <div class="variant-source">Source: Chituc, Crockett &amp; Scholl (2026), Studies 1a&ndash;1c</div>
+</div>
+
+<h4>One-paragraph instructions (benchmark = wallet, modulus = 10)</h4>
+
+<div class="variant-box">
+  <div class="variant-label">Single instruction block</div>
+  <p style="margin-bottom:0;">On the next page, we would like you to rate how morally wrong something is by coming up with a number that captures how you feel. To do this, we would like you to <strong>think of how morally wrong it is to steal a wallet</strong>. However morally wrong that is, <strong>we'll call that a 10.</strong> From there, we would like you to rate a different moral event in reference to stealing a wallet. If something is <strong>twice as morally wrong as stealing a wallet,</strong> give it <strong>a 20.</strong> If it is <strong>half as morally wrong as stealing a wallet,</strong> give it a <strong>5.</strong> You can use numbers as big or as small as you'd like (you can go over 100), but please try to give a realistic answer.</p>
+  <div class="variant-source">Source: Young Replication study (Study 6)</div>
+</div>
+
+<h4>Minimal one-liner (benchmark = wallet, modulus = 10)</h4>
+
+<div class="variant-box">
+  <div class="variant-label">Rating prompt only</div>
+  <p style="margin-bottom:0;">If <strong>stealing a wallet</strong> is a <strong>10,</strong> this event is a...</p>
+  <div class="variant-source">Source: Used across Gamut Pilot, Construal Pilots, Moral Pilots 2.15</div>
+</div>
+
+<h4>Fixed modulus with high anchor (benchmark = killing, modulus = 100)</h4>
+
+<div class="variant-box">
+  <div class="variant-label">Rating prompt</div>
+  <p style="margin-bottom:0;"><strong>If killing an innocent stranger for fun is a 100,</strong> how morally wrong is it to steal a wallet? (Remember: a 50 would mean "half as immoral," 200 would mean "twice as immoral," etc. You can use any number you'd like in your response, including fractions, decimals, and numbers over 100).</p>
+  <div class="variant-source">Source: Moral Luck studies (Studies 8&ndash;9)</div>
+</div>
+
+<!-- ─── FREE MODULUS ──────────────────────────────────── -->
+<h3>Free modulus (participant picks the number)</h3>
+
+<div class="variant-box">
+  <div class="variant-label">Full instructions (free modulus)</div>
+  <p style="margin-bottom:0.5rem;">For this kind of rating, we'll ask you to describe the badness of a crime by directly comparing it to a different crime: <strong>stealing a wallet.</strong></p>
+  <p style="margin-bottom:0.5rem;">We want you to first just give that crime any number that feels right to you. What <em>does</em> matter is that you assign the other crimes a number in relationship to stealing a wallet. Suppose you gave it a <strong>"20"</strong></p>
+  <p style="margin-bottom:0;">If another crime is just as bad as stealing a wallet, then you should <em>also</em> give it a 20. If it is half as bad, you should give it a 10. If it's ten times as bad, give it a 200, and so on. Please use decimals if you feel like you need to, and try to remember that <strong>there's no right or wrong answer to these questions, so just do your best.</strong></p>
+  <div class="variant-source">Source: Chituc, Crockett &amp; Scholl (2026), Studies 3&ndash;5 (Crimes 3.0)</div>
+</div>
+
+<div class="variant-box">
+  <div class="variant-label">Free modulus &mdash; "give it a number, any number"</div>
+  <p style="margin-bottom:0.5rem;">Now, how bad do you think that story is? Please give it a number &mdash; <strong>any number</strong> &mdash; that feels right to you. There's no right or wrong answer. Whatever number you give it, you'll be asked to assign every other story a number <strong>in relationship</strong> to this story.</p>
+  <p style="margin-bottom:0;">So if the next story is twice as bad, you'll give it a number <strong>twice as big.</strong> If it's 10 times as bad, you'll give it a number <strong>ten times as big.</strong> And if it were only 1% as bad, you would give it a number that is 100 times smaller (or .1 times as large). You can use any number you want, big or small (10000 or .0001 are totally acceptable answers &mdash; just make sure you really mean it and aren't exaggerating).</p>
+  <div class="variant-source">Source: Morality-Immorality study</div>
+</div>
+
+<h3>Which variant should I use?</h3>
+
+<p>All of these variants produce valid ratio-scale data. Rules of thumb:</p>
+
+<ul>
+  <li><strong>Fixed modulus</strong> reduces between-subject variance in number use, simplifying analysis. Use this by default.</li>
+  <li><strong>Free modulus</strong> more closely follows classical psychophysics (Stevens, 1956) and avoids potential anchoring effects. Use this if you want to be methodologically conservative or if your benchmark is ambiguous.</li>
+  <li><strong>Two-page instructions</strong> are best for na&iuml;ve online participants who have never done magnitude estimation before.</li>
+  <li><strong>Minimal one-liners</strong> work surprisingly well once participants understand the task (e.g., after a practice trial or in within-subject designs).</li>
+</ul>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="implementations">Code Implementations</h2>
+
+<h3>Python / PsychoPy</h3>
+
+<p>Full implementation with PsychoPy integration and standalone analysis helpers.</p>
+
+<pre><code>from glms import gLMS, MagnitudeEstimation
+
+# Collect a gLMS rating (opens PsychoPy window)
+scale = gLMS()
+rating = scale.collect_rating("How intense was the taste?")
+
+# Or get a PsychoPy Slider to embed in your own experiment
+slider = scale.to_psychopy_slider(win)
+
+# gVAS variant (horizontal)
+scale_h = gLMS(orientation="horizontal")
+
+# Magnitude estimation
+me = MagnitudeEstimation(
+    benchmark_label="stealing a wallet",
+    benchmark_value=10,
+    domain="moral wrongness"
+)
+print(me.instructions)
+
+# Full gLMS session with practice trials
+from glms import run_glms_with_practice
+results = run_glms_with_practice("How intense was the anger?")
+</code></pre>
+
+<p><a href="https://github.com/vladchituc/glms-tools/tree/main/python">View source &rarr;</a></p>
+
+<h3>R / Shiny</h3>
+
+<p>Shiny UI components (vertical gLMS and horizontal gVAS), analysis helpers, and a publication-ready plot function.</p>
+
+<pre><code>source("glms.R")
+
+# Shiny UI: vertical gLMS
+glms_input("my_rating", "How intense was the taste?")
+
+# Shiny UI: horizontal gVAS
+glms_input("my_rating", "How intense?", orientation = "horizontal")
+
+# Standard label positions
+glms_labels()
+
+# Analysis helpers
+me_log_transform(x)      # log(x + 1)
+geometric_mean(x)         # exp(mean(log(x)))
+
+# Publication-ready gLMS figure
+plot_glms(title = "gLMS Scale", accent_color = "#1b9e77")
+
+# Magnitude estimation instructions
+me_instructions(
+  benchmark_label = "stealing a wallet",
+  benchmark_value = 10,
+  zero_label = "neither moral nor immoral",
+  domain = "moral wrongness"
+)
+</code></pre>
+
+<p><a href="https://github.com/vladchituc/glms-tools/tree/main/R">View source &rarr;</a></p>
+
+<h3>jsPsych 7+</h3>
+
+<p>Plugin for online experiments. Supports vertical and horizontal orientations, mobile touch, and custom labels.</p>
+
+<pre><code>import gLMSPlugin from './plugin-glms.js';
+
+const trial = {
+  type: gLMSPlugin,
+  prompt: "How intense was the anger you felt?",
+  show_instructions: true,
+  // Optional:
+  // orientation: "horizontal",  // gVAS variant
+  // scale_height: 500,
+  // button_label: "Continue",
+  // required: true,
+};
+
+// Data saved: { response: 34.7, rt: 2341 }
+</code></pre>
+
+<p>For magnitude estimation in jsPsych, use the built-in <code>survey-text</code> plugin with number validation. Helper function included:</p>
+
+<pre><code>import { meInstructionText } from './plugin-glms.js';
+
+const instructions = meInstructionText({
+  benchmark_label: "stealing a wallet",
+  benchmark_value: 10,
+  domain: "moral wrongness"
+});
+</code></pre>
+
+<p><a href="https://github.com/vladchituc/glms-tools/tree/main/jspsych">View source &rarr;</a></p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="qualtrics">Qualtrics</h2>
+
+<h3>gLMS (vertical)</h3>
+
+<p>Custom JavaScript that transforms a standard Qualtrics slider into a vertical gLMS with quasi-logarithmically spaced labels.</p>
+
+<ol>
+  <li>Create a <strong>Slider</strong> question</li>
+  <li>Set min = 0, max = 100, step = 0.1</li>
+  <li>Click the question &rarr; gear icon &rarr; <strong>Add JavaScript</strong></li>
+  <li>Paste the contents of <code>glms-qualtrics.js</code> into the <code>addOnReady</code> function</li>
+</ol>
+
+<p><a href="https://github.com/vladchituc/glms-tools/tree/main/qualtrics">View source &rarr;</a></p>
+
+<h3>gVAS (horizontal) &mdash; the easy option</h3>
+
+<p>No custom JavaScript required. Just a standard Qualtrics horizontal slider:</p>
+
+<ol>
+  <li>Create a <strong>Slider</strong> question (horizontal is the default)</li>
+  <li>Set min = 0, max = 100, step = 0.1</li>
+  <li>Add the gLMS instruction text (from the <a href="#glms">instructions section</a> above) as a preceding text block</li>
+  <li>The label text describes the scale anchors; participants respond on the 0&ndash;100 horizontal slider</li>
+</ol>
+
+<p>This is what was used in the <a href="#gvas">gVAS pilot</a> (N&nbsp;=&nbsp;783) that replicated the gLMS results.</p>
+
+<h3>Magnitude estimation in Qualtrics</h3>
+<p>No custom JavaScript needed:</p>
+<ol>
+  <li>Create a <strong>Text Entry</strong> question</li>
+  <li>Set validation: Number, Min = 0</li>
+  <li>Adapt the wording from the <a href="#me">magnitude estimation section</a> above</li>
+</ol>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="analysis">Analysis Tips</h2>
+
+<h3>Magnitude estimation data</h3>
+<ul>
+  <li><strong>Log-transform</strong> before analysis: <code>log(x + 1)</code> to handle zeros.</li>
+  <li>Report <strong>geometric means</strong> rather than arithmetic means.</li>
+  <li>Individual differences in number use (some people use larger numbers) can be handled by within-subject normalization or mixed models with random intercepts.</li>
+</ul>
+
+<h3>gLMS / gVAS data</h3>
+<ul>
+  <li>Data is continuous (0&ndash;100), suitable for standard parametric tests.</li>
+  <li>The scale is <em>not</em> linearly spaced &mdash; the labels are quasi-logarithmically distributed. This is by design.</li>
+  <li>For group comparisons, the gLMS/gVAS avoids the El Greco confound that plagues standard Likert scales.</li>
+</ul>
+
+<h3>Correcting Likert scale data</h3>
+<ul>
+  <li>If you already have Likert data and suspect log compression: exponentiate before averaging, or use geometric means.</li>
+  <li>This is equivalent to fitting models in log-space.</li>
+</ul>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="refs">References</h2>
+
+<p class="ref">Bartoshuk, L. M., Duffy, V. B., Green, B. G., et al. (2004). Valid across-group comparisons with labeled scales: the gLMS versus magnitude matching. <em>Physiology &amp; Behavior</em>, 82, 109&ndash;114.</p>
+
+<p class="ref">Chituc, V., Crockett, M. J., &amp; Scholl, B. J. (2026). <a href="https://www.sciencedirect.com/science/article/abs/pii/S0010027725002562">How to show that a cruel prank is worse than a war crime: Shifting scales and missing benchmarks in the study of moral judgment.</a> <em>Cognition</em>, 266, 106315.</p>
+
+<p class="ref">Chituc, V. &amp; Scholl, B. J. (2025). <a href="https://doi.org/10.1007/s42761-025-00314-z">The El Greco fallacy, this time with feeling: How (not) to measure group differences in emotional intensity.</a> <em>Affective Science</em>, 6, 526&ndash;533.</p>
+
+<p class="ref">Green, B. G., Dalton, P., Cowart, B., et al. (1996). Evaluating the 'Labeled Magnitude Scale' for measuring sensations of taste and smell. <em>Chemical Senses</em>, 21, 323&ndash;334.</p>
+
+<p class="ref">Green, B. G., Shaffer, G. S., &amp; Gilmore, M. M. (1993). Derivation and evaluation of a semantic scale of oral sensation magnitude with apparent ratio properties. <em>Chemical Senses</em>, 18, 683&ndash;702.</p>
+
+<p class="ref">Hayes, J. E., Allen, A. L., &amp; Bennett, S. M. (2013). Direct comparison of the generalized Visual Analog Scale (gVAS) and general Labeled Magnitude Scale (gLMS). <em>Food Quality and Preference</em>, 28, 36&ndash;44.</p>
+
+<p class="back"><a href="https://vladchituc.com">&larr; vladchituc.com</a></p>
+
+</body>
+</html>

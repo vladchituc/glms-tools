@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Magnitude Estimation Demo</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Source Sans Pro', 'Segoe UI', sans-serif;
+      background: #f8f4f4;
+      color: #5c5c5c;
+      display: flex;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .demo-wrapper {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      padding: 2rem 2.5rem;
+      max-width: 560px;
+      width: 100%;
+    }
+    .demo-label {
+      font-size: 0.75rem;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+    }
+    .instructions {
+      font-size: 0.95rem;
+      color: #3a3a3a;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+    .instructions strong {
+      color: #222;
+    }
+    .rating-area {
+      background: #f8f8f6;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .rating-prompt {
+      font-size: 1rem;
+      color: #3a3a3a;
+      margin-bottom: 0.8rem;
+    }
+    .rating-prompt em {
+      color: #1b9e77;
+      font-style: normal;
+      font-weight: 600;
+    }
+    .rating-input {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .rating-input input {
+      font-family: 'Source Sans Pro', sans-serif;
+      font-size: 1.2rem;
+      padding: 0.5rem 0.8rem;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      width: 120px;
+      text-align: center;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .rating-input input:focus {
+      border-color: #1b9e77;
+    }
+    .rating-input .hint {
+      font-size: 0.82rem;
+      color: #999;
+    }
+    .submit-btn {
+      display: block;
+      margin: 1rem auto 0;
+      padding: 0.5rem 2rem;
+      font-size: 1rem;
+      background: #1b9e77;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .submit-btn:hover { background: #158f6b; }
+    .divider {
+      border-top: 1px solid #eee;
+      margin: 2rem 0;
+    }
+    h3 {
+      font-size: 1rem;
+      color: #222;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+    .variant-label {
+      font-size: 0.7rem;
+      color: #1b9e77;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.3rem;
+    }
+  </style>
+</head>
+<body>
+
+<div class="demo-wrapper">
+  <div class="demo-label">Magnitude Estimation — Fixed Modulus</div>
+
+  <div class="instructions">
+    For this kind of rating, we'll ask you to describe the badness of a crime by directly comparing it to a different crime: <strong>stealing a wallet</strong>.<br><br>
+
+    We want you to first just give that crime any number that feels right to you. What <em>does</em> matter is that you assign the other crimes a number in relationship to stealing a wallet. Suppose you gave it a <strong>"12."</strong><br><br>
+
+    If another crime is just as bad as stealing a wallet, then you should also give it a 12. If it is half as bad, you should give it a 6. If it's ten times as bad, give it a 120, and so on.
+  </div>
+
+  <div class="rating-area">
+    <div class="rating-prompt">
+      How bad is <em>punching a stranger in the face</em>?
+    </div>
+    <div class="rating-input">
+      <input type="number" min="0" step="any" placeholder="0" id="meInput">
+      <span class="hint">Any non-negative number</span>
+    </div>
+  </div>
+
+  <button class="submit-btn">Continue</button>
+
+  <div class="divider"></div>
+
+  <div class="variant-label">Minimal variant</div>
+  <div class="rating-area">
+    <div class="rating-prompt" style="font-size:0.92rem;">
+      If stealing a wallet is a <strong>10</strong>, what number would you assign to <em>punching a stranger in the face</em>?
+      <span style="color:#999;font-size:0.82rem;">(If it's half as bad, give it a 5; twice as bad, give it a 20; etc.)</span>
+    </div>
+    <div class="rating-input">
+      <input type="number" min="0" step="any" placeholder="0">
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

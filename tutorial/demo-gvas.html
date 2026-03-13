@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>gVAS Interactive Demo</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Source Sans Pro', 'Segoe UI', sans-serif;
+      background: #f8f4f4;
+      color: #5c5c5c;
+      display: flex;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .demo-wrapper {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      padding: 2rem 2.5rem;
+      max-width: 700px;
+      width: 100%;
+    }
+    .demo-label {
+      font-size: 0.75rem;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+    .prompt {
+      font-size: 1.15rem;
+      color: #3a3a3a;
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+    .instructions {
+      font-size: 0.82rem;
+      color: #888;
+      text-align: center;
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+      max-width: 550px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .scale-container {
+      position: relative;
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto 1rem;
+      padding: 0 10px;
+    }
+    .track-h {
+      position: relative;
+      height: 40px;
+      cursor: pointer;
+    }
+    .track-h-line {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: #ccc;
+      transform: translateY(-50%);
+    }
+    .thumb-h {
+      display: none;
+      position: absolute;
+      top: 50%;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #1b9e77;
+      border: 2px solid white;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+      transform: translate(-50%, -50%);
+      z-index: 5;
+      pointer-events: none;
+    }
+    .labels-row {
+      display: flex;
+      position: relative;
+      height: 50px;
+      margin-top: 4px;
+    }
+    .h-label {
+      position: absolute;
+      transform: translateX(-50%);
+      text-align: center;
+      font-size: 11px;
+      color: #555;
+      white-space: nowrap;
+    }
+    .h-label::before {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 8px;
+      background: #aaa;
+      margin: 0 auto 3px;
+    }
+    .value-display {
+      text-align: center;
+      font-size: 1rem;
+      color: #3a3a3a;
+      margin-top: 0.5rem;
+      min-height: 1.5em;
+    }
+    .submit-btn {
+      display: block;
+      margin: 1rem auto 0;
+      padding: 0.5rem 2rem;
+      font-size: 1rem;
+      background: #1b9e77;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      opacity: 0.4;
+      transition: opacity 0.2s;
+    }
+    .submit-btn.active { opacity: 1; }
+    .submit-btn:hover.active { background: #158f6b; }
+    .note {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      background: #f0f9f5;
+      border-left: 3px solid #1b9e77;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: #555;
+    }
+    .note strong { color: #1b9e77; }
+  </style>
+</head>
+<body>
+
+<div class="demo-wrapper">
+  <div class="demo-label">gVAS — generalized Visual Analog Scale (horizontal variant)</div>
+  <p class="prompt">How intense was the anger you felt?</p>
+  <p class="instructions">
+    This scale captures the entire range of how intense experiences can possibly be.
+    The right end (100) represents the strongest sensation you could ever imagine
+    experiencing — the absolute maximum intensity across all sensory modalities.
+    The left end (0) is the complete absence of any sensation.
+  </p>
+
+  <div class="scale-container">
+    <div class="track-h" id="trackH">
+      <div class="track-h-line"></div>
+      <div class="thumb-h" id="thumbH"></div>
+    </div>
+    <div class="labels-row" id="labelsRow"></div>
+  </div>
+  <div class="value-display" id="valueDisplay">&nbsp;</div>
+  <button class="submit-btn" id="submitBtn">Continue</button>
+
+  <div class="note">
+    <strong>Why gVAS?</strong> The gVAS uses the same quasi-logarithmically spaced labels
+    as the gLMS but in a horizontal layout. It is simpler to implement (especially in
+    Qualtrics) and pilot data suggest it produces equivalent results.
+  </div>
+</div>
+
+<script>
+  var labels = [
+    { position: 0,     text: "No sensation" },
+    { position: 1.4,   text: "Barely detectable" },
+    { position: 6.1,   text: "Weak" },
+    { position: 17.2,  text: "Moderate" },
+    { position: 34.7,  text: "Strong" },
+    { position: 52.5,  text: "Very strong" },
+    { position: 100,   text: "Strongest imaginable" },
+  ];
+
+  var labelsRow = document.getElementById("labelsRow");
+  var trackH = document.getElementById("trackH");
+  var thumbH = document.getElementById("thumbH");
+  var valueDisplay = document.getElementById("valueDisplay");
+  var submitBtn = document.getElementById("submitBtn");
+
+  labels.forEach(function(lab) {
+    var el = document.createElement("div");
+    el.className = "h-label";
+    el.style.left = lab.position + "%";
+    el.textContent = lab.text;
+    labelsRow.appendChild(el);
+  });
+
+  var isDragging = false;
+
+  function update(e) {
+    var rect = trackH.getBoundingClientRect();
+    var pct = (e.clientX - rect.left) / rect.width;
+    pct = Math.max(0, Math.min(1, pct));
+    var value = Math.round(pct * 1000) / 10;
+
+    thumbH.style.display = "block";
+    thumbH.style.left = (pct * 100) + "%";
+    valueDisplay.textContent = value.toFixed(1);
+    submitBtn.classList.add("active");
+  }
+
+  trackH.addEventListener("mousedown", function(e) { isDragging = true; update(e); e.preventDefault(); });
+  document.addEventListener("mousemove", function(e) { if (isDragging) update(e); });
+  document.addEventListener("mouseup", function() { isDragging = false; });
+  trackH.addEventListener("touchstart", function(e) { isDragging = true; update(e.touches[0]); e.preventDefault(); });
+  document.addEventListener("touchmove", function(e) { if (isDragging) { update(e.touches[0]); e.preventDefault(); } });
+  document.addEventListener("touchend", function() { isDragging = false; });
+</script>
+
+</body>
+</html>
