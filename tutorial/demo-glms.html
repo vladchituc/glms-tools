@@ -149,7 +149,7 @@
       <div class="thumb" id="thumb"></div>
     </div>
   </div>
-  <div class="value-display" id="valueDisplay">&nbsp;</div>
+  <div class="value-display" id="valueDisplay" style="display:none;"></div>
   <button class="submit-btn" id="submitBtn">Continue</button>
 </div>
 
@@ -181,7 +181,12 @@
     const lbl = document.createElement("div");
     lbl.className = "label-text";
     lbl.style.top = pct + "%";
-    lbl.style.transform = "translateY(-50%)";
+    // Shift "No sensation" down slightly so it doesn't overlap with "Barely detectable"
+    if (lab.position === 0) {
+      lbl.style.transform = "translateY(0%)";
+    } else {
+      lbl.style.transform = "translateY(-50%)";
+    }
     lbl.textContent = lab.text;
     inner.appendChild(lbl);
   });
@@ -197,7 +202,6 @@
     thumb.style.display = "block";
     thumb.style.bottom = (pct * 100) + "%";
     thumb.style.top = "auto";
-    valueDisplay.textContent = value.toFixed(1);
     submitBtn.classList.add("active");
   }
 

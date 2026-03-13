@@ -155,7 +155,7 @@
     </div>
     <div class="labels-row" id="labelsRow"></div>
   </div>
-  <div class="value-display" id="valueDisplay">&nbsp;</div>
+  <div class="value-display" id="valueDisplay" style="display:none;"></div>
   <button class="submit-btn" id="submitBtn">Continue</button>
 
   <div class="note">
@@ -168,12 +168,7 @@
 <script>
   var labels = [
     { position: 0,     text: "No sensation" },
-    { position: 1.4,   text: "Barely detectable" },
-    { position: 6.1,   text: "Weak" },
-    { position: 17.2,  text: "Moderate" },
-    { position: 34.7,  text: "Strong" },
-    { position: 52.5,  text: "Very strong" },
-    { position: 100,   text: "Strongest imaginable" },
+    { position: 100,   text: "Strongest imaginable sensation of any kind" },
   ];
 
   var labelsRow = document.getElementById("labelsRow");
@@ -200,7 +195,6 @@
 
     thumbH.style.display = "block";
     thumbH.style.left = (pct * 100) + "%";
-    valueDisplay.textContent = value.toFixed(1);
     submitBtn.classList.add("active");
   }
 

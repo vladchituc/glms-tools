@@ -225,25 +225,28 @@
 
 <h3>Practice trials</h3>
 
-<p>We recommend 15 practice trials before collecting target ratings, following Hayes et al. (2013). Use cross-modal stimuli to calibrate participants' use of the full scale range:</p>
+<p>Some gLMS protocols include 15 cross-modal practice trials before collecting target ratings (e.g., "the brightness of the sun on a clear day," "the pain of a paper cut"), following Hayes et al. (2013). The idea is to calibrate participants' use of the full scale range. However, our data suggest this may be unnecessary &mdash; the Scale&nbsp;&times;&nbsp;Gender interaction is significant regardless of whether practice trials are included. If you want to be thorough, the practice items are listed below, but for most online studies this is probably overkill.</p>
 
-<ul>
-  <li>The warmth of lukewarm water</li>
-  <li>The brightness of a dimly lit room</li>
-  <li>The loudness of a whisper</li>
-  <li>The sweetness of a ripe strawberry</li>
-  <li>The pain of biting your tongue</li>
-  <li>The brightness of the sun on a clear day</li>
-  <li>The warmth of holding a hot cup of coffee</li>
-  <li>The loudness of a fire alarm</li>
-  <li>The sweetness of honey</li>
-  <li>The pain of a paper cut</li>
-  <li>The strength of a firm handshake</li>
-  <li>The warmth of a summer breeze</li>
-  <li>The loudness of normal conversation</li>
-  <li>The brightness of a candle in a dark room</li>
-  <li>The pain of stubbing your toe</li>
-</ul>
+<details>
+  <summary>Practice trial items (click to expand)</summary>
+  <ul>
+    <li>The warmth of lukewarm water</li>
+    <li>The brightness of a dimly lit room</li>
+    <li>The loudness of a whisper</li>
+    <li>The sweetness of a ripe strawberry</li>
+    <li>The pain of biting your tongue</li>
+    <li>The brightness of the sun on a clear day</li>
+    <li>The warmth of holding a hot cup of coffee</li>
+    <li>The loudness of a fire alarm</li>
+    <li>The sweetness of honey</li>
+    <li>The pain of a paper cut</li>
+    <li>The strength of a firm handshake</li>
+    <li>The warmth of a summer breeze</li>
+    <li>The loudness of normal conversation</li>
+    <li>The brightness of a candle in a dark room</li>
+    <li>The pain of stubbing your toe</li>
+  </ul>
+</details>
 
 <h3>Instructions text</h3>
 
@@ -252,16 +255,17 @@
 <!-- ═══════════════════════════════════════════════════════════ -->
 <h2 id="gvas">The gVAS (horizontal variant)</h2>
 
-<p>The <strong>gVAS</strong> (generalized Visual Analog Scale) uses exactly the same quasi-logarithmically spaced labels as the gLMS, but in a horizontal layout. It's simpler to implement &mdash; especially in Qualtrics, where it's just a standard horizontal slider &mdash; and pilot data suggest it produces equivalent results.</p>
+<p>The <strong>gVAS</strong> (generalized Visual Analog Scale) is a horizontal slider anchored at "No sensation" (0) and "Strongest imaginable sensation of any kind" (100) &mdash; the same modality-general top anchor as the gLMS, but without the intermediate labels. It is substantially simpler to implement: in Qualtrics, it's just a standard horizontal slider with no custom JavaScript. (The gLMS requires custom JS to display quasi-logarithmically spaced labels on a vertical axis; the gVAS avoids this entirely.)</p>
 
 <p><a href="demo-gvas.html" class="demo-link">Try the interactive gVAS demo &rarr;</a></p>
 
 <div class="result-box">
-  <strong>Pilot validation (N = 783).</strong> In the gVAS pilot for <a href="https://doi.org/10.1007/s42761-025-00314-z">Chituc &amp; Scholl (2025)</a>, participants recalled an anger episode and rated its intensity on a horizontal gVAS.
-  The apparent gender difference in anger intensity that appears on standard Likert scales (the El Greco fallacy) was absent on the gVAS: women M&nbsp;=&nbsp;63.5 (SD&nbsp;=&nbsp;22.3), men M&nbsp;=&nbsp;61.4 (SD&nbsp;=&nbsp;23.9), <em>d</em>&nbsp;=&nbsp;0.09, <em>t</em>(779)&nbsp;=&nbsp;1.25, <em>p</em>&nbsp;=&nbsp;.21. This matches the gLMS results from the published studies.
+  <strong>Pilot validation (N = 783).</strong> In a gVAS pilot for <a href="https://doi.org/10.1007/s42761-025-00314-z">Chituc &amp; Scholl (2025)</a>, participants recalled an anger episode and rated its intensity on a horizontal gVAS.
+  The gender difference in anger intensity was not significant on the gVAS: women M&nbsp;=&nbsp;63.5 (SD&nbsp;=&nbsp;22.3), men M&nbsp;=&nbsp;61.4 (SD&nbsp;=&nbsp;23.9), <em>d</em>&nbsp;=&nbsp;0.09, <em>t</em>(779)&nbsp;=&nbsp;1.25, <em>p</em>&nbsp;=&nbsp;.21.
+  Combining these gVAS data with the Likert data from Experiment 1a of the published study (using the same analysis procedure: log-transform and z-score the gVAS data, z-score the Likert data, test the Scale&nbsp;&times;&nbsp;Gender interaction), the interaction was significant: <em>F</em>(3,&nbsp;1779)&nbsp;=&nbsp;3.45, <em>p</em>&nbsp;=&nbsp;.016, &eta;&sup2;&nbsp;=&nbsp;.006. The gender gap on the Likert (<em>d</em>&nbsp;=&nbsp;0.17, <em>p</em>&nbsp;=&nbsp;.009) shrank to near zero on the gVAS (<em>d</em>&nbsp;=&nbsp;0.09, <em>p</em>&nbsp;=&nbsp;.21), replicating the pattern observed with the gLMS.
 </div>
 
-<p>If the gLMS practice-trial protocol is too cumbersome for your study, the gVAS is a reasonable alternative. It retains the critical features (modality-general anchor, quasi-logarithmic label spacing) while being easier to administer online.</p>
+<p>The gVAS retains the critical feature of the gLMS &mdash; a modality-general top anchor &mdash; while being much easier to deploy online. If you need a quick, no-custom-code alternative to the gLMS, the gVAS is a solid choice.</p>
 
 <!-- ═══════════════════════════════════════════════════════════ -->
 <h2 id="me">Magnitude Estimation</h2>
