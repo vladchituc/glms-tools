@@ -2,7 +2,7 @@
 
 Tools and templates for measuring subjective intensity in behavioral research — the **generalized Labeled Magnitude Scale (gLMS/gVAS)** and **magnitude estimation** — available in Python, R, jsPsych, and Qualtrics.
 
-**[Tutorial & documentation →](https://vladchituc.github.io/glms-tools/tutorial/)**
+**[Tutorial & documentation →](https://vladchituc.github.io/glms-tools/)**
 
 ## Why these methods?
 
